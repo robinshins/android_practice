@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="전화번호"
+        android:hint="전화번호(-없이 입력)"
         android:inputType="phone" />
 
     <EditText
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="나이"
+        android:hint="나이(숫자로 입력)"
         android:inputType="number" />
 
     <LinearLayout

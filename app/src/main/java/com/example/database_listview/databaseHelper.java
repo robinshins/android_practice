@@ -18,14 +18,16 @@ public class databaseHelper extends SQLiteOpenHelper {
                 "name text , "+
                 "phonenumber text , "+
                 "age integer , " +
-                "gender text )";
+                "gender text , " +
+                "month integer , " +
+                "active integer)";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("헬퍼","헬퍼클래스에서 on upgrade 작동");
-        String sql  = "drop table if exists healthmemebr";
+        String sql  = "drop table if exists healthmember";
         db.execSQL(sql);
         onCreate(db); // 지우고 다시 만듬 --> 나중에는 안지우고 다시 만들 수 있도록 수정토록 해야함
     }

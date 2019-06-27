@@ -47,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 String phonenumber = editText2.getText().toString();
                 String agestr = editText3.getText().toString();
                 int age = 0;
-                String gender = null;
+                String gender = "";
                 Boolean pass = false;
-
                 if(radioButton.isChecked()){
                     gender = "남";
                     println(gender);
@@ -65,12 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 println(pass.toString());
 
-                if(pass){
+                if(pass && age<150){
                     handler.insert(name, phonenumber , age , gender);
                     println(pass.toString());
                     Intent intent = new Intent(getApplicationContext(),choose_membership.class);
+                    intent.putExtra("name",name);
                     startActivity(intent);
-                } else{
+                }else if(age>=150){
+                    Toast.makeText(getApplicationContext(),"올바른 나이를 입력해주세요",Toast.LENGTH_LONG).show();
+                }
+                else{
                     Toast.makeText(getApplicationContext(),"양식을 다 채워주세요",Toast.LENGTH_LONG).show();
                 }
 
@@ -88,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
                     String phonenumber = c.getString(c.getColumnIndex("phonenumber"));
                     int age = c.getInt(c.getColumnIndex("age"));
                     String gender = c.getString(c.getColumnIndex("gender"));
-                    println("뽑아온 데이터 : "+_id + " " + name + " " + phonenumber  + " " + age  + " " + gender);
+                    int month = c.getInt(c.getColumnIndex("month"));
+                    int active = c.getInt(c.getColumnIndex("active"));
+
+                    println("뽑아온 데이터 : "+_id + " " + name + " " + phonenumber  + " " + age  + " " + gender + " " + month + " " + active);
                 }
             }
         });
