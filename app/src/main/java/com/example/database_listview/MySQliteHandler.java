@@ -11,7 +11,7 @@ public class MySQliteHandler {
     SQLiteDatabase db;
 
     public MySQliteHandler(Context context){
-        helper = new databaseHelper(context,"healthmember",null,5);;
+        helper = new databaseHelper(context,"healthmember",null,6);;
     }
 
     public static MySQliteHandler open(Context context){
@@ -43,7 +43,15 @@ public class MySQliteHandler {
     public void change_active(String name,int active){ // 새로운 정보 table에 insert
         db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("month",active);
+        values.put("active",active);
+        db.update("healthmember",values,"name=?",new String[]{name});
+        Log.d("헬퍼","자료 insert 됨");
+    }
+    public void insert_date(String name,String currentdate, String availabledate){ // 새로운 정보 table에 insert
+        db = helper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("register_date",currentdate);
+        values.put("available_date",availabledate);
         db.update("healthmember",values,"name=?",new String[]{name});
         Log.d("헬퍼","자료 insert 됨");
     }

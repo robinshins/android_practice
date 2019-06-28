@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent date_intent = new Intent(getApplicationContext(),date_managing.class);
+        startService(date_intent);
         final MySQliteHandler handler = MySQliteHandler.open(getApplicationContext());
 
 
@@ -93,8 +95,10 @@ public class MainActivity extends AppCompatActivity {
                     String gender = c.getString(c.getColumnIndex("gender"));
                     int month = c.getInt(c.getColumnIndex("month"));
                     int active = c.getInt(c.getColumnIndex("active"));
+                    String registerdate = c.getString(c.getColumnIndex("register_date"));
+                    String availabledate = c.getString(c.getColumnIndex("available_date"));
 
-                    println("뽑아온 데이터 : "+_id + " " + name + " " + phonenumber  + " " + age  + " " + gender + " " + month + " " + active);
+                    println("뽑아온 데이터 : "+_id + " " + name + " " + phonenumber  + " " + age  + " " + gender + " " + month + " " + active + " " + registerdate + " " + availabledate);
                 }
             }
         });

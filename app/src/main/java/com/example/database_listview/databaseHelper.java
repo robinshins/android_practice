@@ -20,6 +20,8 @@ public class databaseHelper extends SQLiteOpenHelper {
                 "age integer , " +
                 "gender text , " +
                 "month integer , " +
+                "register_date text , " +
+                "available_date text , " +
                 "active integer)";
         db.execSQL(sql);
     }
