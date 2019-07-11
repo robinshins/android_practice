@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#725A5454"
+    tools:context=".clausecheck_activity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="짐박스 신규등록(약관 동의)"
+        android:textColor="#131212"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#F5F2F2"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/serviceusing_clause"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#FFFFFF"
+            android:layout_marginBottom="1dp"
+            android:clickable="true"
+            android:text="서비스 이용약관                                    >"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/agree1"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:text="동의합니다" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#C1F5F2F2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/informationusing_clause"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:padding="10dp"
+            android:text="개인정보 수집·이용·제공 동의           >"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/agree2"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:text="개인정보 수집, 이용 동의" />
+
+        <CheckBox
+            android:id="@+id/agree3"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:text="고유 식별번호 수집, 이용 동의" />
+
+        <CheckBox
+            android:id="@+id/agree4"
+            android:layout_width="match_parent"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="개인정보 제공 동의" />
+
+        <CheckBox
+            android:id="@+id/agree5"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:text="생체인식정보 제공 동의" />
+
+        <CheckBox
+            android:id="@+id/allagree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="3dp"
+            android:background="#1E998F8F"
+            android:text="전체동의합니다"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/cancelbutton"
+            android:layout_width="174dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="1"
+            android:background="#C6A82323"
+            android:gravity="center"
+            android:text="취소"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/nextbutton"
+            android:layout_width="171dp"
+            android:layout_height="52dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:background="#5683D3"
+            android:gravity="center"
+            android:text="다음단계로"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

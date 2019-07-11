@@ -25,7 +25,7 @@ public class date_managing extends Service {
         Log.d("서비스","서비스 시작됨");
         final MySQliteHandler handler = MySQliteHandler.open(getApplicationContext());
         String currentdate;
-        String test = "20191228";
+        String test = "20191229";
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
         Date time = new Date();
         currentdate= format1.format(time);
@@ -35,7 +35,7 @@ public class date_managing extends Service {
             int active = c.getInt(c.getColumnIndex("active"));
             String registerdate = c.getString(c.getColumnIndex("register_date"));
             String availabledate = c.getString(c.getColumnIndex("available_date"));
-            if(test.equals(availabledate) && active==1){
+            if(currentdate.equals(availabledate) && active==1){
                 handler.change_active(name,0);
             }
         }

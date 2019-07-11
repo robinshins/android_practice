@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         final MySQliteHandler handler = MySQliteHandler.open(getApplicationContext());
 
 
-        textView = (TextView) findViewById(R.id.textView);
+
         editText = (EditText) findViewById(R.id.editText); // 이름
         editText2 = (EditText) findViewById(R.id.editText2); // 전화번호
         editText3 = (EditText) findViewById(R.id.editText3); // 나이
@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         radioButton2 = (RadioButton) findViewById(R.id.radioButton2);//여성
         Button button = (Button) findViewById(R.id.button);
         radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
-        radioGroup.setOnCheckedChangeListener(radiocheck);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 Boolean pass = false;
                 if(radioButton.isChecked()){
                     gender = "남";
-                    println(gender);
+
                 } else if(radioButton2.isChecked()){
                     gender = "여";
-                    println(gender);
+
                 }
                 if(name.equals("") || phonenumber.equals("") || agestr.equals("") || gender.equals("")){
                     pass = false;
@@ -64,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
                     age = Integer.parseInt(agestr);
                     pass =true;
                 }
-                println(pass.toString());
+
 
                 if(pass && age<150){
                     handler.insert(name, phonenumber , age , gender);
-                    println(pass.toString());
+
                     Intent intent = new Intent(getApplicationContext(),choose_membership.class);
                     intent.putExtra("name",name);
                     startActivity(intent);
@@ -86,41 +85,14 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor c = handler.select();
-                while(c.moveToNext()){
-                    int _id = c.getInt(c.getColumnIndex("id_"));
-                    String name = c.getString(c.getColumnIndex("name"));
-                    String phonenumber = c.getString(c.getColumnIndex("phonenumber"));
-                    int age = c.getInt(c.getColumnIndex("age"));
-                    String gender = c.getString(c.getColumnIndex("gender"));
-                    int month = c.getInt(c.getColumnIndex("month"));
-                    int active = c.getInt(c.getColumnIndex("active"));
-                    String registerdate = c.getString(c.getColumnIndex("register_date"));
-                    String availabledate = c.getString(c.getColumnIndex("available_date"));
-
-                    println("뽑아온 데이터 : "+_id + " " + name + " " + phonenumber  + " " + age  + " " + gender + " " + month + " " + active + " " + registerdate + " " + availabledate);
-                }
+                Intent intent = new Intent(getApplicationContext(),member_showing.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    final RadioGroup.OnCheckedChangeListener radiocheck = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            Boolean manchecked = false;
-            Boolean womanchecked = false;
-            if(checkedId == R.id.radioButton){
-                manchecked = true;
-            } else if(checkedId == R.id.radioButton2){
-                womanchecked = true;
-            }
-        }
-    };
 
-    public void println(String data){
-        textView.append(data + "\n");
-    }
 
 
 }
