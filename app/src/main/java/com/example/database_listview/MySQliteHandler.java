@@ -11,7 +11,7 @@ public class MySQliteHandler {
     SQLiteDatabase db;
 
     public MySQliteHandler(Context context){
-        helper = new databaseHelper(context,"healthmember",null,6);;
+        helper = new databaseHelper(context,"healthmember",null,7);;
     }
 
     public static MySQliteHandler open(Context context){

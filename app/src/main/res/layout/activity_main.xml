@@ -7,28 +7,94 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baemin_jua_ttf"
+        android:gravity="center"
+        android:text="회원가입"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_centerInParent="true"
+        android:background="#0C0C0C" />
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_margin="7dp"
         android:hint="이름"
         android:inputType="textPersonName" />
-
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="전화번호(-없이 입력)"
+        android:maxLength="4"
+        android:layout_margin="7dp"
+        android:hint="비밀번호 입력(숫자 4자리)"
         android:inputType="phone" />
+    <EditText
+        android:id="@+id/password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
+        android:ems="10"
+        android:layout_margin="7dp"
+        android:hint="비밀번호 확인"
+        android:inputType="phone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="223dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:ems="10"
+            android:hint="휴대전화번호(-없이 입력)"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/send_message"
+            android:layout_width="108dp"
+            android:layout_height="33dp"
+            android:layout_margin="7dp"
+            android:background="#131313"
+            android:fontFamily="@font/baemin_dohyeon_ttf"
+            android:paddingHorizontal="4dp"
+            android:text="인증번호 전송"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/set_provingnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:ems="10"
+        android:hint="인증번호 입력"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:maxLength="6"
         android:ems="10"
-        android:hint="나이(숫자로 입력)"
+        android:hint="생년월일(주민등록 앞 6자리)"
         android:inputType="number" />
 
     <LinearLayout
@@ -39,6 +105,7 @@
         <RadioGroup
             android:id="@+id/radiogroup"
             android:layout_width="match_parent"
+            android:layout_margin="7dp"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
@@ -62,12 +129,20 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baemin_dohyeon_ttf"
+        android:background="#131313"
+        android:textColor="#FFFFFF"
+        android:layout_margin="7dp"
         android:text="가입하기" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
+        android:layout_margin="7dp"
         android:layout_height="wrap_content"
+        android:background="#131313"
+        android:fontFamily="@font/baemin_dohyeon_ttf"
+        android:textColor="#FFFFFF"
         android:text="조회하기" />
 
 </LinearLayout>
