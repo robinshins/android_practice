@@ -59,12 +59,20 @@
 
         <EditText
             android:id="@+id/editText2"
-            android:layout_width="223dp"
+            android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_margin="7dp"
             android:ems="10"
             android:hint="휴대전화번호(-없이 입력)"
             android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/timecounting"
+            android:layout_width="wrap_content"
+            android:layout_margin="7dp"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+           />
 
         <Button
             android:id="@+id/send_message"

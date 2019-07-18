@@ -12,14 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".informationclause_popup_avtivity" android:label="개인정보 이용동의"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity android:name=".choose_payment"></activity>
+        <activity
+            android:name=".informationclause_popup_avtivity"
+            android:label="개인정보 이용동의"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity
             android:name=".serviceclause_popup_activity"
             android:label="서비스 이용약관"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".clausecheck_activity" />
-        <activity android:name=".start_Activity" >
+        <activity android:name=".start_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,9 +37,7 @@
             android:exported="true" />
 
         <activity android:name=".choose_membership" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

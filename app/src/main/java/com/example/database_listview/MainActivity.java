@@ -2,6 +2,8 @@ package com.example.database_listview;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton radioButton2 ;//여성
     RadioGroup radioGroup;
     String proving_number = null;
+    TextView timecounter;
+    Boolean timelimit = true;
 
 
     @Override
@@ -68,9 +72,30 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button);
         radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
         Button sendmessage = (Button) findViewById(R.id.send_message);
+
         sendmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String phone = editText2.getText().toString();
+
+                if(phone.isEmpty()==false&&timelimit){
+                timecounter = (TextView) findViewById(R.id.timecounting);
+                new CountDownTimer(60000, 1000) {
+
+                    public void onTick(long millisUntilFinished) {
+                        timelimit = false;
+                        timecounter.setVisibility(View.VISIBLE);
+                        String strColor = "#FFD86F6F";
+                        timecounter.setTextColor(Color.parseColor(strColor));
+                        timecounter.setText("" + millisUntilFinished / 1000);
+                    }
+
+                    public void onFinish() {
+                        timecounter.setVisibility(View.GONE);
+                        timelimit = true;
+                    }
+                }.start();
+                Toast.makeText(getApplicationContext(),"인증 메세지를 전송했습니다",Toast.LENGTH_LONG).show();
                 proving_number = numberGen(4,1);
                 JSONObject bodyJson = new JSONObject();
                 JSONObject toJson = new JSONObject();
@@ -78,15 +103,15 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     toJson.put("subject","짐박스 회원인증");
-                    toJson.put("content","인증번호는 "+proving_number+"입니다");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
+                    toJson.put("content","<짐박스 회원인증입니다> \n 인증번호는 "+proving_number+"입니다");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
                     toJson.put("to",editText2.getText().toString());					// 수신번호 목록  * 최대 50개까지 한번에 전송할 수 있습니다.
                     toArr.put(toJson);
-                    bodyJson.put("type","LMS");				// 메시지 Type (sms | lms)
+                    bodyJson.put("type","SMS");				// 메시지 Type (sms | lms)
                     bodyJson.put("contentType","COMM");			// 메시지 내용 Type (AD | COMM) * AD: 광고용, COMM: 일반용 (default: COMM) * 광고용 메시지 발송 시 불법 스팸 방지를 위한 정보통신망법 (제 50조)가 적용됩니다.
                     bodyJson.put("countryCode","82");			// 국가 전화번호
                     bodyJson.put("from","01030430374");				// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.
                     bodyJson.put("subject","짐박스 회원인증");				// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
-                    bodyJson.put("content","인증번호는 "+proving_number+"입니다");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
+                    bodyJson.put("content","<짐박스 회원인증입니다> \n 인증번호는 "+proving_number+"입니다");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
                     bodyJson.put("messages", toArr);// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -129,34 +154,14 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-//                StringBuilder message = null;
-//                String content =  "{ \"type\": \"lms\", \"contentType\": \"COMM\", \"countryCode\": \"82\", \"from\": \"01030430374\", \"to\": ";
-//                String content2="[ " + "\""+editText2.getText().toString()+"\"" + " ], \"subject\": \"짐박스인증번호\", \"content\": \""+"짐박스 회원가입 인증번호는"+proving_number+" 입니다."+"\"}";
-//                HashMap<String, String> map_version1 = new HashMap<>();
-//                map_version1.put("Content-Type", "application/json");
-//                map_version1.put("X-NCP-service-secret","1a302508073642f793c421baa3d6819c");
-//                map_version1.put("X-NCP-auth-key","CooQR75mkuhD2PXv52ej");
-//                Log.d("스트링테스트",content+content2);
-//                Call<String> post_version1 = sendmessageService.sendversion1(map_version1,content+content2);
-//                post_version1.enqueue(new Callback<String>() {
-//                    @Override
-//                    public void onResponse(Call<String> call, Response<String> response) {
-//                        if(response.isSuccessful()){
-//                            Log.d("으아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ","성공ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-//                        }
-//                        Log.d("버전 1",response.toString());
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<String> call, Throwable t) {
-//                        t.printStackTrace();
-//                        Log.e("응","안돼에에");
-//
-//                    }
-//                });
+                }else if(timelimit==false){
+                    Toast.makeText(getApplicationContext(),"인증번호가 이미 발송되었습니다. 인증번호는 1분간 유효합니다",Toast.LENGTH_LONG).show();
 
-            }
+                } else{
+                    Toast.makeText(getApplicationContext(),"전화번호를 먼저 입력해주세요",Toast.LENGTH_LONG).show();
+                }}
         });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

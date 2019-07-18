@@ -1,5 +1,6 @@
 package com.example.database_listview;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import java.util.Date;
 public class choose_membership extends AppCompatActivity {
     String name;
     String currentdate;
+    int price1 = 70000;
+    int price2 = 130000;
+    int price3= 240000;
+    int price4 = 430000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,10 @@ public class choose_membership extends AppCompatActivity {
                     }
                     handler.insert_date(name,currentdate,availabledate);
                     Toast.makeText(getApplicationContext(), mon+"월권이 선택되었습니다",Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(getApplicationContext(),choose_payment.class);
+                    intent1.putExtra("month",Integer.toString(mon));
+                    intent1.putExtra("price",price1);
+                    startActivity(intent1);
                 }else if(month.equals("3개월권")){
                     int mon=3;
                     handler.insert_month(name,mon,1);
@@ -63,6 +72,10 @@ public class choose_membership extends AppCompatActivity {
                     }
                     handler.insert_date(name,currentdate,availabledate);
                     Toast.makeText(getApplicationContext(), mon+"월권이 선택되었습니다",Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(getApplicationContext(),choose_payment.class);
+                    intent1.putExtra("month",Integer.toString(mon));
+                    intent1.putExtra("price",price2);
+                    startActivity(intent1);
                 }else if(month.equals("6개월권")){
                     int mon = 6;
                     handler.insert_month(name,mon,1);
@@ -74,6 +87,10 @@ public class choose_membership extends AppCompatActivity {
                     }
                     handler.insert_date(name,currentdate,availabledate);
                     Toast.makeText(getApplicationContext(), mon+"월권이 선택되었습니다",Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(getApplicationContext(),choose_payment.class);
+                    intent1.putExtra("month",Integer.toString(mon));
+                    intent1.putExtra("price",price3);
+                    startActivity(intent1);
                 }else if(month.equals("12개월권")){
                     int mon=12;
                     handler.insert_month(name,mon,1);
@@ -85,6 +102,11 @@ public class choose_membership extends AppCompatActivity {
                     }
                     handler.insert_date(name,currentdate,availabledate);
                     Toast.makeText(getApplicationContext(), mon+"월권이 선택되었습니다",Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(getApplicationContext(),choose_payment.class);
+                    intent1.putExtra("month",Integer.toString(mon));
+                    intent1.putExtra("price",price4);
+                    startActivity(intent1);
+
                 }
             }
         });
