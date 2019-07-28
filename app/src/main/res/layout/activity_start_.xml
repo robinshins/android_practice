@@ -42,6 +42,9 @@
             android:layout_height="98dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
+            android:background="#131313"
+            android:fontFamily="@font/baemin_dohyeon_ttf"
+            android:textColor="#FFFFFF"
             android:text="신규회원 등록" />
 
         <Button
@@ -49,6 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_weight="1"
+            android:background="#131313"
+            android:fontFamily="@font/baemin_dohyeon_ttf"
+            android:textColor="#FFFFFF"
             android:layout_margin="8dp"
             android:layout_marginBottom="8dp"
             android:text="지문등록 및 재등록" />

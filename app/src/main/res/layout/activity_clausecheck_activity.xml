@@ -23,9 +23,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="25dp"
         android:background="#F5F2F2"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/serviceusing_clause"
@@ -35,22 +35,22 @@
             android:background="#FFFFFF"
             android:clickable="true"
             android:padding="10dp"
-            android:text="서비스 이용약관                         >"
+            android:text="서비스 이용약관                      >"
             android:textSize="22sp" />
 
         <CheckBox
             android:id="@+id/agree1"
             android:layout_width="match_parent"
-            android:padding="10dp"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:padding="10dp"
             android:text="동의합니다" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="25dp"
         android:background="#C1F5F2F2"
         android:orientation="vertical">
 
@@ -62,48 +62,48 @@
             android:background="#FFFFFF"
             android:clickable="true"
             android:padding="10dp"
-            android:text="개인정보 수집·이용·제공 동의   >"
+            android:text="개인정보 수집·이용·제공 동의 >"
             android:textSize="22sp" />
 
         <CheckBox
             android:id="@+id/agree2"
             android:layout_width="match_parent"
-            android:padding="10dp"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:padding="10dp"
             android:text="개인정보 수집, 이용 동의" />
 
         <CheckBox
             android:id="@+id/agree3"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:background="#FFFFFF"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="10dp"
             android:text="고유 식별번호 수집, 이용 동의" />
 
         <CheckBox
             android:id="@+id/agree4"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF"
             android:padding="10dp"
-            android:layout_height="wrap_content"
             android:text="개인정보 제공 동의" />
 
         <CheckBox
             android:id="@+id/agree5"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:padding="10dp"
             android:text="생체인식정보 제공 동의" />
 
         <CheckBox
             android:id="@+id/allagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_margin="3dp"
             android:background="#1E998F8F"
+            android:padding="10dp"
             android:text="전체동의합니다"
             android:textSize="20sp"
             android:textStyle="bold" />

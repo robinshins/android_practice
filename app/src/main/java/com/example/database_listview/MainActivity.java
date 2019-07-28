@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     String proving_number = null;
     TextView timecounter;
     Boolean timelimit = true;
+    long mLastClickTime = 0;
 
 
     @Override
@@ -76,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
         sendmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 String phone = editText2.getText().toString();
 
                 if(phone.isEmpty()==false&&timelimit){
@@ -95,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         timelimit = true;
                     }
                 }.start();
-                Toast.makeText(getApplicationContext(),"인증 메세지를 전송했습니다",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"인증 메세지를 전송했습니다",Toast.LENGTH_SHORT).show();
                 proving_number = numberGen(4,1);
                 JSONObject bodyJson = new JSONObject();
                 JSONObject toJson = new JSONObject();
@@ -155,16 +163,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 }else if(timelimit==false){
-                    Toast.makeText(getApplicationContext(),"인증번호가 이미 발송되었습니다. 인증번호는 1분간 유효합니다",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"인증번호가 이미 발송되었습니다. 인증번호는 1분간 유효합니다",Toast.LENGTH_SHORT).show();
 
                 } else{
-                    Toast.makeText(getApplicationContext(),"전화번호를 먼저 입력해주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"전화번호를 먼저 입력해주세요",Toast.LENGTH_SHORT).show();
                 }}
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 String name = editText.getText().toString();
                 String phonenumber = editText2.getText().toString();
                 String agestr = editText3.getText().toString();
@@ -183,20 +195,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(name.equals("") || phonenumber.equals("") || agestr.equals("") || gender.equals("")||password.equals("")||password2.equals("")||provingword.equals("")){
                     pass = false;
-                    Toast.makeText(getApplicationContext(),"양식을 다 채워주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"양식을 다 채워주세요",Toast.LENGTH_SHORT).show();
                 }else if(password.length()!=4){
                     pass=false;
-                    Toast.makeText(getApplicationContext(),"비밀번호는 4자리 숫자를 입력해주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"비밀번호는 4자리 숫자를 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
                 else if(!password.equals(password2)){
                     pass=false;
-                    Toast.makeText(getApplicationContext(),"비밀번호와 비밀번호 확인이 일치하지 않습니다.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"비밀번호와 비밀번호 확인이 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
                 }else if(!proving_number.equals(provingword)){
                     pass=false;
-                    Toast.makeText(getApplicationContext(),"인증번호를 확인해주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"인증번호를 확인해주세요",Toast.LENGTH_SHORT).show();
                 }else if(agestr.length()!=6){
                     pass=false;
-                    Toast.makeText(getApplicationContext(),"생년월일을 정확히 입력해주세요",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"생년월일을 정확히 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     age = Integer.parseInt(agestr);
@@ -216,6 +228,10 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(getApplicationContext(),member_showing.class);
                 startActivity(intent);
             }

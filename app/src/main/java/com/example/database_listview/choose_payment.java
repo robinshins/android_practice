@@ -3,6 +3,7 @@ package com.example.database_listview;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class choose_payment extends AppCompatActivity {
     Button button2;
     CheckBox checkBox;
     MySQliteHandler handler;
+    long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +63,13 @@ public class choose_payment extends AppCompatActivity {
         month_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                month = i+1;
-
+                if(i==1){
+                    month=2;
+                }else if (i==0){
+                    month=0;
+                }else {
+                    month = i + 1;
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -74,6 +81,10 @@ public class choose_payment extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(checkBox.isChecked()){
                 String uri = String.format( "appposw://card-approval?&authKey=1234&inputAmount=%s&inputMonth=%s&inputAmountEditable=false&runStrategy=without-input-view&inputApprovalNo=77&runMode=null&printStrategy=%s", price,month,"forced");
                 Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
@@ -88,7 +99,12 @@ public class choose_payment extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(checkBox.isChecked()){
+                    Log.d("할부개월",Integer.toString(month));
                 String uri = String.format( "appposw://card-approval?&authKey=1234&inputAmount=%s&inputMonth=%s&inputAmountEditable=false&runStrategy=without-input-view&inputApprovalNo=77&runMode=null&printStrategy=%s", 10,month,"forced");
                 Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
                 startActivityForResult(intent,333);

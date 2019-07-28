@@ -3,6 +3,7 @@ package com.example.database_listview;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class choose_membership extends AppCompatActivity {
     int price3= 240000;
     int price4 = 430000;
     MySQliteHandler handler;
+    long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,10 @@ public class choose_membership extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 ListViewItem item = (ListViewItem) parent.getItemAtPosition(position);
                 String month = item.getMonth();
                 if(month.equals("1개월권")){
